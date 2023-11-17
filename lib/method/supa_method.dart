@@ -5,7 +5,6 @@ class SupaNetwork{
  Future<List<TodoModel>> getTodo()async{
     final List data= await Supabase.instance.client.from('todo').select('*');
     log(data.toString());
-
     List<TodoModel> todoList=[];
     for(var element in data){
       todoList.add(TodoModel.fromJson(element));

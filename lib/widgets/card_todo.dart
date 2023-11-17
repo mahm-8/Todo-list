@@ -20,9 +20,8 @@ class _CardTodoState extends State<CardTodo> {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-
         leading: Checkbox(
-          activeColor: Colors.teal,
+          activeColor: Color(0xffceb9b9),
           value: widget.todoList.state, onChanged: (value) {
             if(widget.todoList.state ==false){
 
@@ -33,8 +32,8 @@ class _CardTodoState extends State<CardTodo> {
 
               SupaNetwork().updateTask(false, widget.todoList.id!);
             }
-            log(widget.todoList.state.toString());
             widget.todoList.state=value!;
+            log(widget.todoList.state.toString());
           setState(() {
 
           });

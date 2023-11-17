@@ -30,8 +30,7 @@ BuildContext context,
               child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
-              },
-            ),
+              },),
             TextButton(
               child: const Text('Add'),
               onPressed: () {

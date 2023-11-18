@@ -11,7 +11,7 @@ class ShowDialog {
   TextEditingController descriptionController=TextEditingController();
   final taskKey=GlobalKey<FormState>();
 Future<void> addTasks({required
-BuildContext context,
+BuildContext context
 }) {
   return showDialog<void>(
     context: context,
@@ -22,7 +22,7 @@ BuildContext context,
             scrollable: true,
             title: const Text('Add Task'),
             content: Column(children: [
-              CustomField(taskController: taskController,keyForm: taskKey,
+              CustomField(taskController:taskController,keyForm: taskKey,
               validator: (value) {if(value==null||value.isEmpty){
                 return "please enter your task";
               }return null;

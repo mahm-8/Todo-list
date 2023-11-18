@@ -18,7 +18,7 @@ class _LogInState extends State<LogIn> {
   final passController=TextEditingController();
   final emailKey=GlobalKey<FormState>();
   final passKey=GlobalKey<FormState>();
-  bool display=true;
+  bool display=false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector( onTap:(){FocusScope.of(context).unfocus();} ,
@@ -35,11 +35,20 @@ class _LogInState extends State<LogIn> {
               const GradientText(text: "LogIn"),
               const SizedBox(height: 20,),
               CustomField(taskController: emailController, hintText: 'email',keyForm: emailKey,validator: (val){ if(val!.isEmpty){ return 'enter email please';}if(!val.isValidEmail){return 'email contain @ and .';} return null;}),
-              CustomField(pass: true,display: display,onTap: () {
-                display=!display;
-                setState(() {});
-              },
-                  taskController: passController, hintText: 'password',keyForm: passKey,validator: (val){ if(val!.isEmpty){ return 'enter password please';}if(!val.isValidPassword){return 'upperCase ,lowerCase,number,(!@#*\$)';} return null;}),
+              CustomField(taskController: passController, hintText: 'password',
+                keyForm: passKey,display: display,
+                pass: true,
+                validator:
+                    (val){
+                  if(val!.isEmpty){ return 'enter password please';}
+                  if(!val.isValidPassword){return 'upperCase ,lowerCase,number,(!@#*\$)';}
+                  return null;}
+                ,onTap: () {
+                  display=!display;
+                  setState(() {
+
+                  });
+                },),
               Center(
                 child: ButtonWidget(text: 'LogIn',onPressed: ()async{
                   List<bool> isValid=[];

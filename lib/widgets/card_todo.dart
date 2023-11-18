@@ -19,7 +19,7 @@ class _CardTodoState extends State<CardTodo> {
     return Card(
       child: ListTile(
         leading: Checkbox(
-          activeColor: Color(0xffceb9b9),
+          activeColor: const Color(0xffceb9b9),
           value: widget.todoList.state, onChanged: (value) {
             if(widget.todoList.state ==false){
 

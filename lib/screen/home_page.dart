@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/method/add_task.dart';
 import 'package:todo/widgets/get_task.dart';
-
 import '../method/supa_method.dart';
-enum ExerciseFilter { walking, running, cycling, hiking }
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -37,6 +35,7 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             physics: const NeverScrollableScrollPhysics(),
             child: Column(children: [
+              const SizedBox(height: 20),
                Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,

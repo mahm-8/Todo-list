@@ -6,6 +6,6 @@ class ButtonWidget extends StatelessWidget {
  final String text;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: onPressed, child: Text(text));
+    return ElevatedButton(onPressed: onPressed,style: ElevatedButton.styleFrom(foregroundColor: Colors.black,minimumSize:const Size(200, 50) ), child: Text(text,style: const TextStyle(fontSize: 16),) ,);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo/screen/loading.dart';
-import 'package:todo/screen/sign_up.dart';
 import 'package:todo/supabase/data_base.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

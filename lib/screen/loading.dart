@@ -13,10 +13,9 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 2),() {
-      checkToken();
+    Future.delayed(const Duration(seconds: 3),() {
+     checkToken();
     },);
 
   }
@@ -28,6 +27,6 @@ class _LoadingPageState extends State<LoadingPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator.adaptive(),),);
+    return  Scaffold(body: Center(child: Image.asset("assets/todo.png",height: 300,)),);
   }
 }

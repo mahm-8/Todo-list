@@ -40,7 +40,9 @@ class _HomePageState extends State<HomePage> {
                Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [const Text('Task',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),IconButton(onPressed: (){
+                  children: [const Text('Task',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
+                    Image.asset("assets/todoHome (1).png",height: 50,)
+                    ,IconButton(onPressed: (){
                     ShowDialog().addTasks(context: context);
                     setState(() {});
                     }, icon: const Icon(Icons.upload))],),

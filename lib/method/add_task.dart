@@ -16,44 +16,46 @@ BuildContext context,
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
-      return SizedBox(height: MediaQuery.of(context).size.height/3,
-        child: AlertDialog(
-          scrollable: true,
-          title: const Text('Add Task'),
-          content: Column(children: [
-            CustomField(taskController: taskController,keyForm: taskKey,
-            validator: (value) {if(value==null||value.isEmpty){
-              return "please enter your task";
-            }return null;
-            }, hintText: 'Add New Task'
-            ,),const SizedBox(height: 20,), CustomField( hintText: 'Description',taskController: descriptionController)
-          ],),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },),
-            TextButton(
-              child: const Text('Add'),
-              onPressed: () async{
-                if(taskKey.currentState!.validate()) {
-                  final supabase= await Supabase.instance.client;
-                  SupaNetwork().addTask({
-                    "task": taskController.text,
-                    "description": descriptionController.text,
-                   "user_id": supabase.auth.currentUser!.id
-                  });
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
-                }
-                taskController.clear();
-                descriptionController.clear();
+      return GestureDetector( onTap:(){FocusScope.of(context).unfocus();},
+        child: SizedBox(height: MediaQuery.of(context).size.height/3,
+          child: AlertDialog(
+            scrollable: true,
+            title: const Text('Add Task'),
+            content: Column(children: [
+              CustomField(taskController: taskController,keyForm: taskKey,
+              validator: (value) {if(value==null||value.isEmpty){
+                return "please enter your task";
+              }return null;
+              }, hintText: 'Add New Task'
+              ,),const SizedBox(height: 20,), CustomField( hintText: 'Description',taskController: descriptionController)
+            ],),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },),
+              TextButton(
+                child: const Text('Add'),
+                onPressed: () async{
+                  if(taskKey.currentState!.validate()) {
+                    final supabase= await Supabase.instance.client;
+                    SupaNetwork().addTask({
+                      "task": taskController.text,
+                      "description": descriptionController.text,
+                     "user_id": supabase.auth.currentUser!.id
+                    });
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
+                  }
+                  taskController.clear();
+                  descriptionController.clear();
 
 
 
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       );
     },

@@ -26,16 +26,12 @@ class _CardTodoState extends State<CardTodo> {
             if(widget.todoList.state ==false){
 
               SupaNetwork().updateTask(true, widget.todoList.id!);
-
-
             }else{
-
               SupaNetwork().updateTask(false, widget.todoList.id!);
             }
             widget.todoList.state=value!;
             log(widget.todoList.state.toString());
           setState(() {
-
           });
         },),
         title:  Text("${widget.todoList.task}"),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo/method/add_task.dart';
 import 'package:todo/widgets/get_task.dart';
+
+import '../method/supa_method.dart';
 enum ExerciseFilter { walking, running, cycling, hiking }
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,9 +17,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    SupaNetwork().getTodo();
     Future.delayed(const Duration(seconds: 2),(){
       update=false;
+      setState(() {
+
+      });
     });
+
   }
   @override
   Widget build(BuildContext context) {
@@ -40,6 +47,7 @@ class _HomePageState extends State<HomePage> {
                ),
               const SizedBox(height: 20,) ,
               const Divider(color: Colors.black,),
+              if(update==false)
               const GetTask(),
 
             ],),

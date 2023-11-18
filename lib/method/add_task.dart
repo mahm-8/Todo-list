@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo/method/supa_method.dart';
 import 'package:todo/screen/home_page.dart';
 import 'package:todo/widgets/cust_field.dart';
@@ -33,11 +34,13 @@ BuildContext context,
               },),
             TextButton(
               child: const Text('Add'),
-              onPressed: () {
+              onPressed: () async{
                 if(taskKey.currentState!.validate()) {
+                  final supabase= await Supabase.instance.client;
                   SupaNetwork().addTask({
                     "task": taskController.text,
                     "description": descriptionController.text,
+                   "user_id": supabase.auth.currentUser!.id
                   });
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
                 }

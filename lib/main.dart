@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo/screen/home_page.dart';
+import 'package:todo/screen/sign_up.dart';
 import 'package:todo/supabase/data_base.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
     return  MaterialApp(
       theme: ThemeData(useMaterial3: true),
 
-      home: const HomePage()
+      home: const SignUp()
 
 
     );

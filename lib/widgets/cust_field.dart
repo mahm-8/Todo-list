@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 
 class CustomField extends StatelessWidget {
-  const CustomField({super.key,required this.taskController, this.keyForm,  this.validator, required this.hintText});
+  const CustomField({super.key,
+    required this.taskController,
+    this.keyForm,  this.validator,
+    required this.hintText,
+    this.display=false, this.onTap, this.pass=false});
  final TextEditingController taskController;
  final GlobalKey? keyForm;
   final String? Function(String?)? validator;
   final String hintText;
+  final bool display;
+  final Function()? onTap;
+  final bool pass;
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: keyForm,
-      child: TextFormField(
-        validator: validator,
-        controller:taskController ,
-        decoration: InputDecoration(hintText: hintText,
-            suffixIconColor: Colors.grey,
-            fillColor:Colors.brown[100] ,
-            filled: true,
-            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Form(
+        key: keyForm,
+        child: TextFormField(
+          obscureText:!pass ? false:!display ,
+          validator: validator,
+          controller:taskController ,
+          decoration: InputDecoration(hintText: hintText,
+
+              fillColor:Colors.brown[100] ,
+              filled: true,
+              suffixIcon:!pass? null :
+              InkWell( onTap: onTap, child: Icon(display? Icons.remove_red_eye_outlined : Icons.visibility_off_outlined) ),
+              
+              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),),
+      ),
     );
   }
 }

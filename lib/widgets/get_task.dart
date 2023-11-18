@@ -16,12 +16,14 @@ class _GetTaskState extends State<GetTask> {
       builder: (context, snapshot) {
         if(snapshot.hasData){
           final List<TodoModel>? todoList =snapshot.data;
-          return SizedBox(height: MediaQuery.of(context).size.height/1.32,width: MediaQuery.of(context).size.width,
+          return SizedBox(height: MediaQuery.of(context).size.height/1.32,
+            width: MediaQuery.of(context).size.width,
             child: ListView.builder(itemCount: todoList?.length,
               itemBuilder: (context, index) {
-                return CardTodo(todoList: todoList![index],deletePressed:() {setState(() {
+                return CardTodo(todoList: todoList![index],
+                  deletePressed:() {
                   SupaNetwork().deleteTask(todoList[index].id!);
-                });},);
+                  setState(() { });},);
               },),
           );
         }

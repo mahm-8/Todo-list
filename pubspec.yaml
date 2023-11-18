@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   supabase_flutter: ^1.10.25
+  pinput: ^3.0.1
 
 dev_dependencies:
   flutter_test:

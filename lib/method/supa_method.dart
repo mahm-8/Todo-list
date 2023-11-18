@@ -3,7 +3,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../model/todo_model.dart';
 class SupaNetwork{
  Future<List<TodoModel>> getTodo()async{
-    final List data= await Supabase.instance.client.from('todo').select('*');
+   final supabase= Supabase.instance.client.auth.currentUser!.id;
+    final data= await Supabase.instance.client.
+    from('todo').select('*').eq('user_id', supabase);
     log(data.toString());
     List<TodoModel> todoList=[];
     for(var element in data){

@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: SafeArea(
+      body:SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
@@ -47,6 +47,8 @@ class _HomePageState extends State<HomePage> {
                ),
               const SizedBox(height: 20,) ,
               const Divider(color: Colors.black,),
+              if(update==true)
+                const Center(child: CircularProgressIndicator.adaptive()),
               if(update==false)
               const GetTask(),
 

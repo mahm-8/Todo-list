@@ -6,7 +6,6 @@ class SupaNetwork{
    final supabase= Supabase.instance.client.auth.currentUser!.id;
     final data= await Supabase.instance.client.
     from('todo').select('*').eq('user_id', supabase);
-    log(data.toString());
     List<TodoModel> todoList=[];
     for(var element in data){
       todoList.add(TodoModel.fromJson(element));

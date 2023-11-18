@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:todo/method/supa_method.dart';
@@ -8,7 +7,6 @@ class CardTodo extends StatefulWidget {
   const CardTodo({super.key, required this.todoList, this.deletePressed});
   final TodoModel todoList;
   final Function()? deletePressed;
-
   @override
   State<CardTodo> createState() => _CardTodoState();
 }
@@ -30,7 +28,6 @@ class _CardTodoState extends State<CardTodo> {
               SupaNetwork().updateTask(false, widget.todoList.id!);
             }
             widget.todoList.state=value!;
-            log(widget.todoList.state.toString());
           setState(() {
           });
         },),

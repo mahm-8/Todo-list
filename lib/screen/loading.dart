@@ -10,23 +10,46 @@ class LoadingPage extends StatefulWidget {
   @override
   State<LoadingPage> createState() => _LoadingPageState();
 }
+
 class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3),() {
-     checkToken();
-    },);
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        checkToken();
+      },
+    );
+  }
 
-  }
   checkToken() async {
-    final check=await Supabase.instance.client;
-    if(check.auth.currentSession?.accessToken!=null){
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomePage(),), (route) => false);
-    }else{Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LogIn(),), (route) => false);}
+    final check = Supabase.instance.client;
+    if (check.auth.currentSession?.accessToken != null) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+          (route) => false);
+    } else {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LogIn(),
+          ),
+          (route) => false);
+    }
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(body: Center(child: Image.asset("assets/todo.png",height: 300,)),);
+    return Scaffold(
+      body: Center(
+          child: Image.asset(
+        "assets/todo.png",
+        height: 300,
+      )),
+    );
   }
 }

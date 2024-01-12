@@ -1,9 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo/extension/ext_string.dart';
-import 'package:todo/screen/home_page.dart';
+import 'package:todo/screen/loading.dart';
 import 'package:todo/screen/sign_up.dart';
 import 'package:todo/widgets/gradient_text.dart';
 import '../widgets/button_widget.dart';
@@ -34,7 +33,7 @@ class _LogInState extends State<LogIn> {
               ),
               const GradientText(text: "LogIn"),
               const SizedBox(height: 20,),
-              CustomField(taskController: emailController, hintText: 'email',keyForm: emailKey,validator: (val){ if(val!.isEmpty){ return 'enter email please';}if(!val.isValidEmail){return 'email contain @ and .';} return null;}),
+              CustomField(taskController: emailController, hintText: 'email',keyForm: emailKey,validator: (val){ if(val!.isEmpty){ return 'enter email please';}if(!val.isValidEmail){return 'email contain @ and .';} return null;}, line: 1,),
               CustomField(taskController: passController, hintText: 'password',
                 keyForm: passKey,display: display,
                 pass: true,
@@ -48,19 +47,19 @@ class _LogInState extends State<LogIn> {
                   setState(() {
 
                   });
-                },),
+                }, line: 1,),
               Center(
                 child: ButtonWidget(text: 'LogIn',onPressed: ()async{
                   List<bool> isValid=[];
                   isValid.add(validtion(formKey: emailKey));
                   isValid.add(validtion(formKey: passKey));
                   if(!isValid.contains(false)) {
-                    final supabase =await Supabase.instance.client;
+                    final supabase =Supabase.instance.client;
 
                     final user=await supabase.auth.signInWithPassword(password: passController.text.trim(),email: emailController.text.trim());
                     if (user.session?.accessToken!=null) {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const HomePage()));
+                          MaterialPageRoute(builder: (context) => const LoadingPage()));
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Wrong email or password')));
                     }
